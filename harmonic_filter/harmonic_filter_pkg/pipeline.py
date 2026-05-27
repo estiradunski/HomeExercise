@@ -26,7 +26,6 @@ def apply_harmonic_filter(
     method: Literal["fft", "iir"] = "fft",
     *,
     notch_bandwidth_hz: float = 2.0,
-    taper: bool = True,
     quality_factor: float = 30.0,
 ) -> FilterResult:
     input_path = Path(input_path)
@@ -44,7 +43,7 @@ def apply_harmonic_filter(
     if method == "fft":
         filtered, removed = filter_harmonics_fft(
             samples, sample_rate, base_freq, num_harmonics,
-            notch_bandwidth_hz=notch_bandwidth_hz, taper=taper,
+            notch_bandwidth_hz=notch_bandwidth_hz,
         )
     elif method == "iir":
         filtered, removed = filter_harmonics_iir(

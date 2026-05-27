@@ -17,7 +17,6 @@ def filter_harmonics_fft(
     base_freq: float,
     num_harmonics: int,
     notch_bandwidth_hz: float = 2.0,
-    taper: bool = True,
 ) -> tuple[np.ndarray, list[float]]:
     if base_freq <= 0:
         raise ValueError(f"base_freq must be positive, got {base_freq!r}")
@@ -42,13 +41,9 @@ def filter_harmonics_fft(
             )
             break
 
-        if taper:
-            sigma: float = notch_bandwidth_hz / 2.3548
-            gaussian_bump = np.exp(-0.5 * ((freqs - harmonic_freq) / sigma) ** 2)
-            mask *= 1.0 - gaussian_bump
-        else:
-            half_bw: float = notch_bandwidth_hz / 2.0
-            mask[np.abs(freqs - harmonic_freq) <= half_bw] = 0.0
+        sigma: float = notch_bandwidth_hz / 2.3548
+        gaussian_bump = np.exp(-0.5 * ((freqs - harmonic_freq) / sigma) ** 2)
+        mask *= 1.0 - gaussian_bump
 
         removed_frequencies.append(harmonic_freq)
         logger.debug("  Notched %.1f Hz  (k=%d)", harmonic_freq, k)
