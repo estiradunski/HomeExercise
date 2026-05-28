@@ -1,6 +1,13 @@
-# Harmonic Filter
+# Part I Algo– Harmonic Filter
 
-Reads a WAV file, removes harmonic frequencies (2×f₀, 3×f₀, …, N×f₀), and writes a filtered WAV file while preserving the fundamental frequency f₀.
+## Task
+
+Given a WAV file containing a fundamental frequency f₀ and its harmonics (2×f₀, 3×f₀, …, N×f₀), implement a filter that removes all the harmonics while preserving the fundamental frequency.
+
+**Example:**
+- Input `in.wav` contains: 50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550 Hz
+- Filter parameters: `base_freq = 50 Hz`, `num_harmonics = 10`
+- Output `out.wav` contains: **50 Hz only**
 
 ---
 
