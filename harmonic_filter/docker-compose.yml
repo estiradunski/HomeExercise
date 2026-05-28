@@ -1,0 +1,6 @@
+services:
+  harmonic_filter_api:
+    build: .
+    ports:
+      - "8001:8001"
+    restart: unless-stopped
