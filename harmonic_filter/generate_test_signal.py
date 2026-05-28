@@ -72,8 +72,8 @@ def _print_summary(
     print(f"  Harmonics     : {', '.join(map(str, harmonics_hz))} Hz  [to be removed]")
     print(f"  Sample rate   : {sample_rate} Hz")
     print(f"  Duration      : {duration:.2f} s  ({n_samples} samples)")
-    print(f"\nTo filter:  python harmonic_filter.py "
-          f"-i {output_path} -o out.wav -f {base_freq:.0f} -n {num_harmonics}")
+    print(f"\nTo filter:  python -m harmonic_filter_pkg "
+          f"-i {output_path} -o out.wav -f {base_freq:.0f} -n {num_harmonics} --bandwidth 15")
 
 
 def main(argv: list[str] | None = None) -> None:
